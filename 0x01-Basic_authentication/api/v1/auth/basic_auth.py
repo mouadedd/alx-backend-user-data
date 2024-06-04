@@ -4,5 +4,5 @@ from .auth import Auth
 
 
 class BasicAuth(Auth):
-    """"""
+    """this is a test"""
     pass
