@@ -2,11 +2,11 @@
 """
 Route module for the API
 """
+import os
 from os import getenv
 from api.v1.views import app_views
 from flask import Flask, jsonify, abort, request
 from flask_cors import (CORS, cross_origin)
-import os
 
 
 app = Flask(__name__)
@@ -23,6 +23,7 @@ elif AUTH_TYPE == "basic_auth":
     from api.v1.auth.basic_auth import BasicAuth
     auth = BasicAuth()
 
+
 @app.before_request
 def befor_req():
     """the biggest piece is the filtering of each request"""
@@ -35,6 +36,7 @@ def befor_req():
                 abort(401, description='Unauthorized')
             if auth.current_user(request) is None:
                 abort(403, description='Forbidden')
+
 
 @app.errorhandler(404)
 def not_found(error) -> str:

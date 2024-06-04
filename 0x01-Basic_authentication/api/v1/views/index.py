@@ -42,4 +42,3 @@ def forbid() -> str:
         - raise a 403 error
     """
     abort(403, description="Forbidden")
-

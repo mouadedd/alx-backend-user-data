@@ -3,12 +3,13 @@
 from flask import request
 from typing import List, TypeVar
 
+
 class Auth():
     """template for all authentication system you will implement"""
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """returns False - path and excluded_paths"""
-        
+
         if path is None:
             return True
         elif excluded_paths is None or len(excluded_paths) == 0:
