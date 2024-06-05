@@ -25,12 +25,14 @@ elif AUTH_TYPE == "basic_auth":
 
 
 @app.before_request
-def befor_req():
-    """the biggest piece is the filtering of each request"""
+def bef_req():
+    """
+    Filter each request before it's handled by the proper route
+    """
     if auth is None:
         pass
     else:
-        ex = ['api/v1/status/', '/api/v1/unauthorized/', '/api/v1/forbidden/']
+        ex = ['/api/v1/status/', '/api/v1/unauthorized/', '/api/v1/forbidden/']
         if auth.require_auth(request.path, ex):
             if auth.authorization_header(request) is None:
                 abort(401, description='Unauthorized')
