@@ -36,11 +36,13 @@ def bef_req():
     if auth is None:
         pass
     else:
-        ex = ['/api/v1/status/', '/api/v1/unauthorized/',
-              '/api/v1/forbidden/', '/api/v1/auth_session/login/']
+        ex = ['/api/v1/status/',
+              '/api/v1/unauthorized/',
+              '/api/v1/forbidden/',
+              '/api/v1/auth_session/login/']
         if auth.require_auth(request.path, ex):
             if (auth.authorization_header(request) is None
-                and auth.session_cookie(request) is None):
+                    and auth.session_cookie(request) is None):
                 abort(401, description='Unauthorized')
             current_user = auth.current_user(request)
             if auth.current_user(request) is None:
