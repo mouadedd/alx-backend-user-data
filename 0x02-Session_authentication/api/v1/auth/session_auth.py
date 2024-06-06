@@ -22,14 +22,14 @@ class SessionAuth(Auth):
         if session_id is None or not isinstance(session_id, str):
             return None
         return self.user_id_by_session_id.get(session_id)
-    
+
     def current_user(self, request=None):
         """6. Use Session ID for identifying a User"""
         sess_cookie = self.session_cookie(request)
         u_id = self.user_id_for_session_id(sess_cookie)
-        user =  User.get(u_id)
+        user = User.get(u_id)
         return user
-    
+
     def destroy_session(self, request=None):
         """8-logout task """
         if request is None:
