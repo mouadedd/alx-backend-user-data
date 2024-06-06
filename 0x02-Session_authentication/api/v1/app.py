@@ -39,6 +39,8 @@ def bef_req():
             if auth.current_user(request) is None:
                 abort(403, description='Forbidden')
 
+            request.current_user = current_user
+
 
 @app.errorhandler(404)
 def not_found(error) -> str:
