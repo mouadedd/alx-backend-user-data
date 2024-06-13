@@ -39,10 +39,10 @@ class DB:
         self._session.add(user)
         self._session.commit()
         return user
-    
+
     def find_user_by(self, **kwargs) -> User:
         """method takes in arbitrary keyword arguments
-        returns the first row found in the users table 
+        returns the first row found in the users table
         as filtered by the method’s input arguments"""
         for key in kwargs:
             if not hasattr(User, key):
@@ -51,7 +51,6 @@ class DB:
         if user is None:
             raise NoResultFound
         return user
-
 
     def update_user(self, user_id: int, **kwargs) -> None:
         """ update a user """
