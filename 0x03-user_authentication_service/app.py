@@ -42,7 +42,7 @@ def login() -> str:
 
 
 @app.route("/sessions", methods=["DELETE"], strict_slashes=False)
-def logout():
+def logout() -> str:
     """14. Log out
     """
     session_id = request.cookies.get("session_id")
