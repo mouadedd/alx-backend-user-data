@@ -2,6 +2,7 @@
 """ 4 -hash password """
 import bcrypt
 from db import DB, User
+from typing import Union
 from sqlalchemy.orm.exc import NoResultFound
 from uuid import uuid4
 
@@ -43,3 +44,18 @@ class Auth:
         except NoResultFound:
             return False
         return bcrypt.checkpw(password.encode(), user.hashed_password)
+
+    def create_session(self, email: str) -> Union[str, None]:
+        """10. Get session ID
+        """
+        session_id = _generate_uuid()
+        try:
+            user = self._db.find_user_by(email=email)
+        except NoResultFound:
+            pass
+        else:
+            try:
+                self._db.update_user(user.id, session_id=session_id)
+            except (NoResultFound, ValueError):
+                pass
+        return session_id
