@@ -18,7 +18,7 @@ def index() -> str:
 @app.route('/users', methods=['POST'], strict_slashes=False)
 def users() -> str:
     """
-    Register a new user route
+    7- Register user
     """
     email, password = request.form.get('email'), request.form.get('password')
     try:
